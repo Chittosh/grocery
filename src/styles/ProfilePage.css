@@ -1,0 +1,534 @@
+/* ProfilePage.css */
+
+.profile-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .profile-header {
+    margin-bottom: 30px;
+  }
+  
+  .profile-header h1 {
+    font-size: 28px;
+    color: #333;
+  }
+  
+  .profile-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+  }
+  
+  @media (max-width: 768px) {
+    .profile-container {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .profile-section {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .section-header h2 {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    color: #333;
+  }
+  
+  .icon-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+  
+  .icon-button:hover {
+    background-color: #e5e5e5;
+  }
+  
+  /* User Info Section */
+  .user-details {
+    padding: 10px 0;
+  }
+  
+  .form-group {
+    margin-bottom: 16px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #555;
+  }
+  
+  .form-group input {
+    width: 98%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .info-display {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .info-item {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .info-label {
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 5px;
+  }
+  
+  .info-value {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  /* Order History Section */
+  .orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .order-card {
+    border: 1px solid #eee;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .order-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+  }
+  
+  .order-basic-info {
+    flex: 1;
+  }
+  
+  .order-basic-info h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .order-date {
+    font-size: 14px;
+    color: #777;
+  }
+  
+  .order-status-price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 15px;
+  }
+  
+  .order-status {
+    padding: 4px 8px;
+    background-color: #e6f7ed;
+    color: #10b981;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  
+  .order-total {
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 5px;
+    color: #333;
+  }
+  
+  .expand-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+  }
+  
+  /* New side panel styles for order details */
+  .order-details-panel {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 0 6px 6px 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    transition: transform 0.3s ease;
+    transform: translateX(0);
+    overflow-y: auto;
+    max-height: 400px;
+  }
+  
+  .order-details {
+    padding: 15px;
+  }
+  
+  /* For mobile responsiveness */
+  @media (max-width: 991px) {
+    .order-details-panel {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 500px;
+      height: auto;
+      max-height: 80vh;
+      z-index: 1000;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .order-details-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+    
+    .close-panel-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: #777;
+    }
+  }
+  
+  .order-details h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .order-items {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+  }
+  
+  .order-items li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+  }
+  
+  .item-name {
+    flex: 2;
+  }
+  
+  .item-quantity {
+    flex: 1;
+    text-align: center;
+    color: #777;
+  }
+  
+  .item-price {
+    flex: 1;
+    text-align: right;
+    font-weight: 500;
+  }
+  
+  /* Review Section */
+  .order-review-section {
+    margin-top: 20px;
+  }
+  
+  .review-display {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 6px;
+  }
+  
+  .review-rating {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .review-text {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  
+  .review-edit-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: transparent;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    color: #666;
+  }
+  
+  .review-edit-btn:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .rating-selector {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .star-icon {
+    cursor: pointer;
+    transition: transform 0.1s;
+  }
+  
+  .star-icon:hover {
+    transform: scale(1.1);
+  }
+  
+  .review-form textarea {
+    width: 97%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    font-family: inherit;
+  }
+  
+  .submit-review-btn {
+    align-self: flex-end;
+    padding: 10px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+  
+  .submit-review-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .submit-review-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .no-orders {
+    text-align: center;
+    color: #777;
+    margin: 30px 0;
+  }
+  
+  /* Addresses section styles */
+  .addresses {
+    margin-bottom: 30px;
+  }
+  
+  .addresses-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .address-card {
+    position: relative;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+  
+  .default-address {
+    border: 2px solid #4caf50;
+  }
+  
+  .default-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #4caf50;
+    color: white;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  
+  .address-type {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .address-details {
+    margin-bottom: 15px;
+  }
+  
+  .address-details p {
+    margin: 3px 0;
+    color: #555;
+  }
+  
+  .address-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .address-actions button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+  
+  .address-actions .default-btn {
+    background-color: #f1f1f1;
+    color: #333;
+    padding: 5px 10px;
+  }
+  
+  .address-actions .edit-btn {
+    color: #2196f3;
+  }
+  
+  .address-actions .delete-btn {
+    color: #f44336;
+  }
+  
+  .address-actions button:hover {
+    background-color: rgba(0,0,0,0.05);
+  }
+  
+  .address-form {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .address-form h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 18px;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .form-row .form-group {
+    flex: 1;
+  }
+  
+  .form-group.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .form-group.checkbox input {
+    width: auto;
+  }
+  
+  .form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .cancel-btn {
+    background-color: #f1f1f1;
+    color: #333;
+  }
+  
+  .submit-btn {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .form-buttons button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .form-buttons button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .no-addresses {
+    text-align: center;
+    color: #777;
+    padding: 20px;
+  }

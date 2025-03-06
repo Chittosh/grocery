@@ -1,0 +1,182 @@
+/* Navbar container */
+.navbar {
+    /* position: fixed; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Navbar inner container */
+.navbar-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 95vw;
+    /* margin: 0 auto; */
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Logo */
+.navbar-logo img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Search Bar */
+.search-bar {
+    flex-grow: 1;
+    margin: 0 20px;
+    position: relative;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s ease;
+    margin: inherit;
+}
+
+.search-bar input:focus {
+    border-color: #28a745;
+}
+
+/* Navbar Actions */
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Buttons */
+.login-btn,
+.register-btn,
+.logout-btn {
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+/* Login button */
+.login-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.login-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Register button */
+.register-btn {
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+}
+
+.register-btn:hover {
+    background-color: #1f8b3d;
+}
+
+/* Logout button */
+.logout-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.logout-btn:hover {
+    background-color: #b02a37;
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .cart-icon, .profile-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    transition: all 0.3s ease;
+  }
+  
+  .cart-icon:hover, .profile-icon:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.05);
+  }
+  
+  .user-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .profile-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    background-color: #f5f5f5;
+    color: #333;
+    border-radius: 50%;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .profile-btn:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.05);
+  }
+  
+  /* If you want a subtle box shadow for depth */
+  .profile-btn {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Make icon color match your theme */
+  .profile-btn svg {
+    color: #333;
+  }
+
+/* Responsive Navbar */
+@media screen and (max-width: 768px) {
+    .navbar-container {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .search-bar {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .navbar-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
