@@ -2,8 +2,17 @@ import React from 'react';
 import { Bookmark, ShoppingCart } from 'lucide-react';
 import '../styles/Homepage.css';
 import productData from "./productData";
+import { addToCart } from './Cart';
 
 const ProductCard = ({ id, name, image, originalPrice, discountedPrice, discount, weight, category, rating, brand }) => {
+  const handleAddToCart = () => {
+    // Use the addToCart function imported from Cart.js
+    const updatedCart = addToCart({ id, name, image, originalPrice, discountedPrice, discount, weight, category, rating, brand });
+    
+    // Show a small notification that item was added
+    alert(`${name} added to cart!`);
+  };
+
   return (
     <div className="product-card">
       <div className="discount-badge">{discount}% OFF</div>
@@ -24,7 +33,7 @@ const ProductCard = ({ id, name, image, originalPrice, discountedPrice, discount
         </div>
         <Bookmark className="bookmark-icon" size={20} />
       </div>
-      <button className="add-to-cart">
+      <button className="add-to-cart" onClick={handleAddToCart}>
         <ShoppingCart size={20} />
         Add
       </button>
@@ -32,10 +41,7 @@ const ProductCard = ({ id, name, image, originalPrice, discountedPrice, discount
   );
 };
 
-
 const Homepage = () => {
-  // Sample product data from SearchPage.js
-
   return (
     <div className="homepage">
       <div className="page-header">

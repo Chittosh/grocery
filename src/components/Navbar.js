@@ -16,10 +16,9 @@ const Navbar = () => {
     setIsLoggedIn(false);
   };
 
-  const [searchTerm, setSearchTerm] = useState('');
   const handleSearch = (term) => {
-    setSearchTerm(term);
-    navigate('/search', { state: { searchTerm: term } });
+    // Navigate to search page with search term as query parameter
+    navigate(`/search?term=${encodeURIComponent(term)}`);
   };
 
   return (

@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Bookmark, ShoppingCart, ChevronLeft, ChevronRight, Filter } from "lucide-react";
+import { useLocation, useSearchParams } from "react-router-dom";
 import "../styles/Searchpage.css";
 import "../styles/Homepage.css";
 import productData from "./productData";
+import { addToCart } from './Cart';
 
-
-const SearchPage = ({ searchTerm }) => {
+const SearchPage = () => {
+  // Get search term from URL query parameters
+  const [searchParams] = useSearchParams();
+  const searchTerm = searchParams.get("term") || "";
+  
   const [filteredProducts, setFilteredProducts] = useState(productData);
   const [selectedCategory, setSelectedCategory] = useState("Fruits & Vegetables");
   const [selectedSubCategory, setSelectedSubCategory] = useState("All");
@@ -32,10 +37,13 @@ const SearchPage = ({ searchTerm }) => {
   useEffect(() => {
     let result = productData;
 
-    // Filter by search term
+    // Filter by search term across name, brand, and category
     if (searchTerm) {
+      const searchTermLower = searchTerm.toLowerCase();
       result = result.filter((product) =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+        product.name.toLowerCase().includes(searchTermLower) ||
+        product.brand.toLowerCase().includes(searchTermLower) ||
+        product.category.toLowerCase().includes(searchTermLower)
       );
     }
 
@@ -96,6 +104,14 @@ const SearchPage = ({ searchTerm }) => {
     setIsFilterOpen(!isFilterOpen);
   };
 
+  const handleAddToCart = (product) => {
+    // Use the addToCart function imported from Cart.js
+    const updatedCart = addToCart(product);
+    
+    // Show a small notification that item was added
+    alert(`${product.name} added to cart!`);
+  };
+
   return (
     <div className={`search-page ${isFilterOpen ? 'filter-open' : 'filter-closed'}`}>
       {isFilterOpen && (
@@ -132,6 +148,11 @@ const SearchPage = ({ searchTerm }) => {
           <div className="refined-section">
             <div className="refined-header">
               <h3>Refined by</h3>
+              {searchTerm && (
+                <div className="active-search-term">
+                  <span>Search: "{searchTerm}"</span>
+                </div>
+              )}
             </div>
 
             {/* Price Range Filter */}
@@ -224,7 +245,10 @@ const SearchPage = ({ searchTerm }) => {
 
       <div className="search-results">
         <div className="results-header">
-          <div className="results-count">{filteredProducts.length} Results</div>
+          <div className="results-count">
+            {filteredProducts.length} Results
+            {searchTerm && <span className="search-term-indicator"> for "{searchTerm}"</span>}
+          </div>
           <div className="results-actions">
             {!isFilterOpen ? (
               <Filter size={20} onClick={toggleSidebar} className="show-filter-icon" />
@@ -233,32 +257,39 @@ const SearchPage = ({ searchTerm }) => {
         </div>
 
         <div className={`products-grid ${isFilterOpen ? 'three-column' : 'four-column'}`}>
-          {filteredProducts.map((product) => (
-            <div key={product.id} className="product-card">
-              <div className="discount-badge">{product.discount}% OFF</div>
-              <div className="product-image">
-                <img src={product.image} alt={product.name} />
-              </div>
-              <div className="brand-label">{product.brand}</div>
-              <div className="product-name">{product.name}</div>
-              <div className="weight-selector">
-                <select>
-                  <option>{product.weight}</option>
-                </select>
-              </div>
-              <div className="pricing">
-                <div>
-                  <span className="discounted-price">₹{product.discountedPrice}</span>
-                  <span className="original-price">₹{product.originalPrice}</span>
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <div key={product.id} className="product-card">
+                <div className="discount-badge">{product.discount}% OFF</div>
+                <div className="product-image">
+                  <img src={product.image} alt={product.name} />
                 </div>
-                <Bookmark className="bookmark-icon" size={20} />
+                <div className="brand-label">{product.brand}</div>
+                <div className="product-name">{product.name}</div>
+                <div className="weight-selector">
+                  <select>
+                    <option>{product.weight}</option>
+                  </select>
+                </div>
+                <div className="pricing">
+                  <div>
+                    <span className="discounted-price">₹{product.discountedPrice}</span>
+                    <span className="original-price">₹{product.originalPrice}</span>
+                  </div>
+                  <Bookmark className="bookmark-icon" size={20} />
+                </div>
+                <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
+                  <ShoppingCart size={20} />
+                  Add
+                </button>
               </div>
-              <button className="add-to-cart">
-                <ShoppingCart size={20} />
-                Add
-              </button>
+            ))
+          ) : (
+            <div className="no-results">
+              <h3>No products found for "{searchTerm}"</h3>
+              <p>Try a different search term or browse categories</p>
             </div>
-          ))}
+          )}
         </div>
       </div>
     </div>
